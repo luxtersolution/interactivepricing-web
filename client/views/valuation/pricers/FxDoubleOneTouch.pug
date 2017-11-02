@@ -1,0 +1,16 @@
+extends ../PricerLayout
+include ../mixins
+block pricerBlk
+  fieldset.group-border.form-horizontal(ng-disabled="$ctrl.isDisabled")
+    legend Input Data
+    +selectField('Underlying', 'underlying')(ng-options="o for o in $ctrl.underlyings track by o" ng-model="$ctrl.inputs.underlying" ng-change="$ctrl.updateCurrencies();$ctrl.getFXSpot()")
+    +inputField('Settlement Date', 'settlementDate')(type='date' ng-model='$ctrl.inputs.settlementDate')
+    +inputField('Expiry Date', 'expiryDate')(type='date' ng-model='$ctrl.inputs.expiryDate')
+    +selectField('Payment Time', 'paymentTime', 'Pay At Hit', 'Pay At Expiry')(ng-model="$ctrl.inputs.paymentTime")
+    +inputField('Notional', 'notional')(type='number', name='notional', required, ng-model='$ctrl.inputs.notional', step="0.01")
+      +hints('notional')
+    +selectField('Notional Currency', 'notionalCurrency')(ng-model="$ctrl.inputs.notionalCurrency" ng-options="currency for currency in $ctrl.currencies")
+    +inputField('Barrier Low', 'barrierLow')(type='number', name='barrierLow', required, ng-model='$ctrl.inputs.barrierLow', step="0.0001")
+      +hints('barrierLow')
+    +inputField('Barrier High', 'barrierHigh')(type='number', name='barrierHigh', required, ng-model='$ctrl.inputs.barrierHigh', step="0.0001")
+      +hints('barrierHigh')

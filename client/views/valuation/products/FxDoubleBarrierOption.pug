@@ -1,0 +1,10 @@
+div(id="FxDoubleBarrierOption")
+  h3 Double Barrier Option
+  | Double barrier option is an option which becomes activated (knock-in) or deactivated (knock-out) depending whether the underlying crosses the pre-determined barrier levels.
+  | The barriers are usually continuously monitored during the trading hours by the agreed calculation agent.
+  | The knock-out double barrier option may have a rebate, which is paid to the option owner in case of the option deactivation at the deactivation time or at the maturity.
+  | The knock-in double barrier option may have a rebate, which is paid if the option expires worthless because the underlying didn't cross the barrier.
+  br
+  center
+    img.img-fluid(src='/img/valuation/fx_double_barrier.svg')
+  a.btn.btn-default(ui-sref="products.pricer({productId:'FxDoubleBarrierOption'})" role="button") Go to pricer

@@ -1,0 +1,29 @@
+mixin link(href, name)
+  a(href=href)&attributes(attributes)= name
+mixin label(title, name)
+  label.col-sm-4.col-form-label.text-right(for=name)= title
+    if block
+      block
+mixin selectField(title, name, ...items)
+  .form-group.row
+    +label(title, name)
+     | :
+    .col-sm-8.col-xl-4
+      select.form-control.form-control-sm()&attributes(attributes)
+        each item in items
+          option(value=`${item.toLowerCase().replace(/\s/g,'')}`)= item
+      if block
+        block
+mixin inputField(title, name)
+  .form-group.row
+    +label(title, name)
+     | :
+    .col-sm-8.col-xl-4
+      input.form-control.form-control-sm( id=name )&attributes(attributes)
+      if block
+        block
+mixin errorBlock(name)
+  span.error(ng-show='$ctrl.validation_errors.'+`${name}`) Not valid #{name}! {{ $ctrl.validation_errors.#{name}.msg }}
+mixin hints(name)
+  span.error(ng-show='FXform.'+`${name}`+'.$error.number') Not valid number!
+  span.error(ng-show='FXform.'+`${name}`+'.$error.required') Required!

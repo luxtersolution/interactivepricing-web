@@ -1,0 +1,11 @@
+div(id="FxSingleBarrierOption")
+  h3 Single Barrier Option
+  | Single barrier option is an option which becomes activated (knock-in) or deactivated (knock-out) depending whether the underlying crosses the pre-determined barrier level.
+  | The barrier is usually continuously monitored during the trading hours by the agreed calculation agent.
+  | The knock-out single barrier option may have a rebate, which is paid to the option owner in case of the option deactivation at the deactivation time or at the maturity.
+  | The knock-in single barrier option may have a rebate, which is paid if the option expires worthless because the underlying didn't cross the barrier.
+  br
+  center
+    img.img-fluid(src='/img/valuation/fx_single_barrier.svg')
+      
+  a.btn.btn-default(ui-sref="products.pricer({productId:'FxSingleBarrierOption'})" role="button") Go to pricer

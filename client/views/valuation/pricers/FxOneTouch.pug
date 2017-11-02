@@ -1,0 +1,15 @@
+extends ../PricerLayout
+include ../mixins
+block pricerBlk
+  fieldset.group-border.form-horizontal(ng-disabled="$ctrl.isDisabled")
+    legend Input Data
+    +selectField('Underlying', 'underlying')(ng-options="o for o in $ctrl.underlyings track by o" ng-model="$ctrl.inputs.underlying" ng-change="$ctrl.updateCurrencies();$ctrl.getFXSpot()")
+    +inputField('Settlement Date', 'settlementDate')(type='date' ng-model='$ctrl.inputs.settlementDate')
+    +inputField('Expiry Date', 'expiryDate')(type='date' ng-model='$ctrl.inputs.expiryDate')
+    +inputField('Notional', 'notional')(type='number', name='notional', required, ng-model='$ctrl.inputs.notional', step="0.01")
+      +hints('notional')
+    +selectField('Notional Currency', 'notionalCurrency')(ng-model="$ctrl.inputs.notionalCurrency" ng-options="currency for currency in $ctrl.currencies")
+    +selectField('Payment Time', 'paymentTime', 'Pay At Hit', 'Pay At Expiry')(ng-model="$ctrl.inputs.paymentTime")
+    +selectField('Barrier Direction', 'barrierDirection', 'Down', 'Up')(ng-model="$ctrl.inputs.barrierDirection")
+    +inputField('Barrier', 'barrier')(type='number', name='barrier', required, ng-model='$ctrl.inputs.barrier', step="0.1")
+      +hints('barrier')

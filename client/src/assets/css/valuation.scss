@@ -1,0 +1,53 @@
+@import 'sizes';
+
+.newspaper {
+  margin-top:2em;
+  column-count: 1;
+  column-width: 100px;
+  column-rule: 4px outset;
+  @include sm {
+    column-count: 2;
+  }
+  @include lg {
+    column-count: 3;
+  }
+}
+
+productsearch {
+  .dropdown-menu {
+    background-color: rgba(235, 235, 235, 0.8);
+    width: 90%;
+    @include lg {
+      width: 50%;
+    }
+
+    li {
+      padding-left:5px;
+      font-size: small;
+    }
+    li.active {
+      a {
+        color: #fff;
+      }
+      font-size: medium;
+      text-decoration: none;
+      background-color: #337ab7;
+      outline: 0;
+    }
+  }
+}
+
+legend {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#systemDateBlock [class^=col-] { background: #e9ecef; border-radius: 0.25rem; }
+#systemDateBlock {
+  margin-right: 0px;
+  margin-left: 0px;
+  label{
+    @include sm {
+      text-align:right;
+    }
+  }
+}

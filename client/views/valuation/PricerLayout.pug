@@ -1,0 +1,52 @@
+h2 {{$ctrl.product}}
+form(name='FXform' method="POST")
+  .row.justify-content-end
+    .col-md-6
+      #systemDateBlock.row.justify-content-end
+        label.col-sm-4.col-form-label(for="systemDate"): b System Date:
+        .col-sm-4
+          input.form-control.form-control-sm( id="systemDate" type='date' ng-model='$ctrl.inputs.today')
+      input( type='hidden', ng-model='$ctrl.inputs.instrument' )
+  .row
+    .col-md-6
+      block pricerBlk
+    .col-xs-2.col-md-6
+      fieldset.group-border.form-horizontal
+        legend &nbsp
+        button.center-block.btn.btn-primary(ng-click="$ctrl.calculate()" ng-disabled="FXform.$invalid") Price
+        span.center-block(ng-show="$ctrl.loading") LOADING
+      fieldset.group-border.form-horizontal(ng-show='$ctrl.validation_errors')
+        legend Errors
+        ul
+          li(ng-repeat="error in $ctrl.validation_errors track by $index") {{ error }}
+.alert.row(ng-show="$ctrl.pricingError") Error Occured: {{ $ctrl.pricingError }}
+.row(ng-show="$ctrl.result")
+  .col-md-12
+    fieldset#results.group-border.form-horizontal
+      legend Results
+      .row
+        table.table.table-striped
+          tr
+            td Price
+            td
+              |{{$ctrl.result.npv}}
+          tr
+            td Delta forward
+            td
+              |{{$ctrl.result.delta}}
+          tr
+            td Gamma
+            td
+              |{{$ctrl.result.gamma}}
+          tr
+            td Vega
+            td 
+              |{{$ctrl.result.vega}}
+          tr
+            td Volga
+            td
+              |{{$ctrl.result.volga}}
+          tr
+            td Vanna
+            td
+              |{{$ctrl.result.vanna}}

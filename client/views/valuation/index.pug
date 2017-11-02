@@ -1,0 +1,23 @@
+extends /layouts/main
+
+append vars
+  - base = ''
+block link
+  -var selected = 'none';
+
+block content
+  div()
+    .row
+      .col-lg-12
+        h1 Valuation
+        div(ncy-breadcrumb="", ncy-breadcrumb-text-separator=">" ng-hide="atRoot")
+        div(ui-view="producttitle")
+    .row
+      .col-lg-12
+        div.well(ui-view="")
+
+append custom_bottom_js
+  script(src='/js/valuation.js')
+
+block custom_head_css
+  link(href='/css/valuation.css', rel='stylesheet')

@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package interactivepricing;
+
+service Valuer {
+    rpc Value (ValuationRequest) returns (ValuationResponse) {}
+    rpc AddTenor (AddTenorRequest) returns (AddTenorResponse) {}
+}
+
+enum BusinessDayAdjustment
+{
+    Unadjusted = 0;
+    Preceding = 1;
+    Following = 2;
+    ModifiedFollowing = 3;
+}
+
+message AddTenorRequest {
+    int32 date = 1;
+    repeated string holidayCenters = 2;
+    BusinessDayAdjustment adjustment = 3;
+    string tenor = 5;
+}
+
+message AddTenorResponse {
+    int32 date = 1;
+    string error = 2;
+}
+
+message ValuationContext {
+    string id = 1;
+    int32 valuation_date = 2;
+    double fx_spot = 3;
+    double domestic_rate = 4;
+    double foreign_rate = 5;
+    double volatility = 6;
+}
+
+message ValuationRequest {
+    string id = 1;
+    google.protobuf.Any instrument = 2;
+    repeated string risk_measures = 3;
+    ValuationContext context = 4;
+}
+
+message ValuationResponse {
+    string id = 1;
+    repeated double risk_measures = 2;
+}
+
+message InstrumentFxSpot {
+    string id = 1;
+    string underlying = 2;
+    int32 settlement_date = 3;
+    double base_notional = 4;
+    double term_notional = 5;
+}
+
+message InstrumentFxForward {
+    string id = 1;
+    string underlying = 2;
+    int32 settlement_date = 3;
+    double base_notional = 4;
+    double term_notional = 5;
+}
+
+message InstrumentFxSwap {
+    string id = 1;
+    string underlying = 2;
+    int32 initial_settlement_date = 3;
+    int32 final_settlement_date = 4;
+    double base_notional = 5;
+    double term_notional = 6;
+    double spread = 7;
+}
+
+message InstrumentFxEuropeanVanillaOption {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string settlement_type = 5;
+    string option_type = 6;
+    double notional = 7;
+    string notional_currency = 8;
+    double strike = 9;
+}
+
+message InstrumentFxEuropeanDigitalOption {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string option_type = 5;
+    double notional = 6;
+    string notional_currency = 7;
+    double strike = 8;
+}
+
+message InstrumentFxSingleBarrierOption {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string settlement_type = 5;
+    string option_type = 6;
+    double notional = 7;
+    string notional_currency = 8;
+    double strike = 9;
+    double barrier = 10;
+    string barrier_type = 11;
+    string barrier_direction = 12;
+    double rebate = 13;
+    string rebate_currency = 14;
+    string rebate_time = 15;
+}
+
+message InstrumentFxDoubleBarrierOption {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string settlement_type = 5;
+    string option_type = 6;
+    double notional = 7;
+    string notional_currency = 8;
+    double strike = 9;
+    double barrier_low  = 10;
+    double barrier_high  = 11;
+    string barrier_type = 12;
+    double rebate = 13;
+    string rebate_currency = 14;
+    string rebate_time = 15;
+}
+
+message InstrumentFxNoTouch {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    double notional = 5;
+    string notional_currency = 6;
+    double barrier = 7;
+    string barrier_direction = 8;
+}
+
+message InstrumentFxOneTouch {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string payment_time = 5;
+    double notional = 6;
+    string notional_currency = 7;
+    double barrier = 8;
+    string barrier_direction = 9;
+}
+
+message InstrumentFxDoubleNoTouch {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    double notional = 5;
+    string notional_currency = 6;
+    double barrier_low = 7;
+    double barrier_high = 8;
+}
+
+message InstrumentFxDoubleOneTouch {
+    string id = 1;
+    string underlying = 2;
+    int32 expiry_date = 3;
+    int32 settlement_date = 4;
+    string payment_time = 5;
+    double notional = 6;
+    string notional_currency = 7;
+    double barrier_low = 8;
+    double barrier_high = 9;
+}
+

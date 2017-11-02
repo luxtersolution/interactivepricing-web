@@ -1,0 +1,14 @@
+extends ../PricerLayout
+include ../mixins
+block pricerBlk
+  fieldset.group-border.form-horizontal(ng-disabled="$ctrl.isDisabled")
+    legend Input Data
+    +selectField('Underlying', 'underlying')(ng-options="o for o in $ctrl.underlyings track by o" ng-model="$ctrl.inputs.underlying" ng-change="$ctrl.getFXSpot()")
+    +inputField('Initial Settlement Date', 'initialSettlementDate')(type='date' ng-model='$ctrl.inputs.initialSettlementDate')
+    +inputField('Final Settlement Date', 'finalSettlementDate')(type='date' ng-model='$ctrl.inputs.finalSettlementDate')
+    +inputField('Base Notional', 'baseNotional')(type='number', name='baseNotional', required, ng-model='$ctrl.inputs.baseNotional', step="0.01")
+      +hints('baseNotional')
+    +inputField('Term Notional', 'termNotional')(type='number', name='termNotional', required, ng-model='$ctrl.inputs.termNotional', step="0.01")
+      +hints('termNotional')
+    +inputField('Spread', 'spread')(type='number', name='spread', required, ng-model='$ctrl.inputs.spread')
+      +hints('spread')
