@@ -12,7 +12,7 @@
     "build": "webpack --progress",
     "build:watch": "webpack --progress -w",
     "build:prod": "NODE_ENV=production webpack --progress",
-    "postinstall": "find $npm_package_config_protopath -name \"*.proto\" -exec protoc --plugin=protoc-gen-grpc=/usr/local/bin/grpc_node_plugin --grpc_out=./server/proto/ --proto_path=$npm_package_config_protopath --js_out=\"import_style=commonjs,binary:./server/proto/\" {} +"
+    "postinstall": "mkdir ./server/proto && find $npm_package_config_protopath -name \"*.proto\" -exec protoc --plugin=protoc-gen-grpc=/usr/local/bin/grpc_node_plugin --grpc_out=./server/proto/ --proto_path=$npm_package_config_protopath --js_out=\"import_style=commonjs,binary:./server/proto/\" {} +"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.10",

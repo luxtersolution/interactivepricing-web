@@ -4,7 +4,7 @@ const config = {
   },
   "app": {
     "name": "Luxter Solution",
-    "devPort": 3000,
+    "devPort": 3003,
   },
 }
 

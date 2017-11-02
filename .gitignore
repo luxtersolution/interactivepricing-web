@@ -36,3 +36,5 @@ bower_components
 client/bower/
 *.swp
 *_pb.js
+.env
+./client/build/*
